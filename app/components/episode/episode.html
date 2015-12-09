@@ -1,0 +1,53 @@
+<a [router-link]="['/Episode', {id: id-1}]" class="left carousel-control" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+<a [router-link]="['/Episode', {id: id--1}]" class="right carousel-control" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+<div class="center">
+	<h1>{{author}}</h1>
+	<section>
+	<div class="content-block">
+		<div class="row">
+			<div class="col-md-3"><img [src]='image' height="144" width="144"></img></div>
+			<div class="col-md-9">	
+				<h2>{{episodeTitle}}</h2>
+				<h4>{{subtitle}}</h4>
+			</div>
+		</div>
+		<div id="information-block">
+			<button type="button" (click)="service.addEpisode(id)" class="btn btn-default">Add to queue</button>
+			<p><b>Publisher:</b> {{publisher}} </p>
+			<p><b>Published:</b> {{pubdate}} </p>
+			<p><b>Description:</b> {{description}}</p>
+			<p><b>Runtime:</b> {{duration}} </p>
+		</div>
+	</div>
+	</section>
+
+	<section>
+	<h1>Comments</h1>
+	<div class="content-block">
+	<comment-form [id]="id" [objectType]="objectType"></comment-form>
+	<ul>
+		<li *ng-for="#comment of comments">
+			<div *ng-if="comment.parent">
+				<div [ng-style]="{'padding-left': 1+'em' } ">
+					<b>{{ comment.user_name }}</b> {{ comment.submit_date }} <br>
+					{{ comment.comment }}
+				</div>
+			</div>
+			<div *ng-if="!comment.parent">
+				<b>{{ comment.user_name }}</b> {{ comment.submit_date }} <br>
+				{{ comment.comment }}
+			</div>
+
+		</li>
+	</ul>
+	</div>
+	</section>
+	</div>
+</div>

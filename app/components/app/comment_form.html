@@ -1,0 +1,10 @@
+<section class="comment-form-content">
+	<form [ng-form-model]="form" (ng-submit)="onSubmit()">
+		<p>
+            <textarea rows="1" cols="1" name="text" type="text" ng-control="comment"></textarea>
+        </p>
+        <p>
+            <button type="submit" [disabled]="!form.valid">Submit</button>
+        </p>
+    </form>
+</section>
