@@ -11,6 +11,7 @@ import {
 
 import {HomeCmp} from '../home/home';
 import {EpisodeCmp} from '../episode/episode';
+import {PodcastCmp} from '../podcast/podcast';
 import {PlayerCmp} from './player';
 
 @Component({
@@ -24,6 +25,7 @@ import {PlayerCmp} from './player';
 @RouteConfig([
   { path: '/', component: HomeCmp, as: 'Home' },
   { path: '/episode/:id', component: EpisodeCmp, as: 'Episode' }
+  { path: '/podcast/:id', component: PodcastCmp, as: 'Podcast' }
 ])
 export class AppCmp {
 }

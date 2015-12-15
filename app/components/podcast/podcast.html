@@ -1,0 +1,65 @@
+<a [router-link]="['/Podcast', {id: id-1}]" class="left carousel-control" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+<a [router-link]="['/Podcast', {id: id--1}]" class="right carousel-control" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+<div class="center">
+	<h1>{{author}}</h1>
+	<section>
+	<div class="content-block">
+		<div class="row">
+			<div class="col-md-3"><img [src]='image' height="144" width="144"></img></div>
+			<div class="col-md-9">	
+				<h2>{{title}}</h2>
+				<h4>{{author}}</h4>
+				<p>{{summary}}</p>
+			</div>
+		</div>
+		<div id="information-block">
+			<button type="button" (click)="service.addEpisode(id)" class="btn btn-default">Add to queue</button>
+			<p><b>Publisher:</b> {{publisher}} </p>
+			<p><b>Link:</b> {{link}} </p>
+			<p><b>Keywords:</b> {{keywords}} </p>
+		</div>
+	</div>
+	</section>
+
+	<section>
+	<h1>Episodes</h1>
+	<div class="content-block">
+		<ul>
+			<div class="list-group">
+				<li *ng-for="#episode of episodes">
+					<a [router-link]="['/Episode', {id: episode.id}]" class="list-group-item">{{ episode.title }}</a>
+				</li>
+			</div>
+		</ul>
+	</div>
+	</section>
+
+
+	<section>
+	<h1>Comments</h1>
+	<div class="content-block">
+		<comment-form [object_type]="object_type" [id]="id"></comment-form>
+		<ul>
+			<li *ng-for="#comment of comments">
+				<div *ng-if="comment.parent">
+					<div [ng-style]="{'padding-left': 1+'em' } ">
+						<b>{{ comment.user_name }}</b> {{ comment.submit_date }} <br>
+						{{ comment.comment }}
+					</div>
+				</div>
+				<div *ng-if="!comment.parent">
+					<b>{{ comment.user_name }}</b> {{ comment.submit_date }} <br>
+					{{ comment.comment }}
+				</div>
+			</li>
+		</ul>
+	</div>
+	</section>
+</div>

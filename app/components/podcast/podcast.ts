@@ -9,30 +9,35 @@ import {Http, Headers} from 'angular2/http';
 //import * as io from 'socket.io-client';
 
 @Component({
-  selector: 'episode',
-  templateUrl: './components/episode/episode.html',
-  styleUrls: ['./components/episode/episode.css'],
+  selector: 'podcast',
+  templateUrl: './components/podcast/podcast.html',
+  styleUrls: ['./components/podcast/podcast.css'],
   encapsulation: ViewEncapsulation.None,
   directives: [CORE_DIRECTIVES, RouterLink, ROUTER_DIRECTIVES, CommentFormCmp]
 })
-export class EpisodeCmp {
+export class PodcastCmp {
 	comments: Array<Object>;
-	episode: Array<Object>;
+	podcast: Array<Object>;
+	episodes: Array<Object>;
 	routeParam: RouteParams;
 	id: number;
 	object_type: string;
-	mark;
-	episodeTitle;
-	podcastTitle;
-	subtitle;
-	description;
-	pubdate;
-	duration;
-	explicit;
-	subscribed;
-	author;
-	publisher;
-	podcast: number;
+	title: string;
+	author: string;
+	publisher: string;
+	summary: string;
+	category: string;
+	explicit: boolean;
+	link: string;
+	language: string;
+	copyright: number;
+	blocked: boolean;
+	complete: boolean;
+	keywords: string;
+	image: string;
+	
+	
+
 	// need to set an actual default
 	image = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
 
@@ -40,14 +45,13 @@ export class EpisodeCmp {
 		this.service = service;
 		this.routeParam = routeParam;
 		this.id = this.routeParam.params.id;
-		this.id2 = '20';
-		this.object_type = 'episode';
+		this.object_type = 'podcast';
 		//this.service.startEpisode(this.routeParam.params.id);
 
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get('http://api.test.com:8000/episode/' + this.routeParam.params.id + '/comments/', {
+		this.http.get('http://api.test.com:8000/podcast/' + this.routeParam.params.id + '/comments/', {
 			headers: headers
 			})
 		.map(res => res.json())
@@ -57,29 +61,7 @@ export class EpisodeCmp {
 			() => console.log()
 		);
 
-		this.http.get('http://api.test.com:8000/episode/' + this.routeParam.params.id + '/', {
-			headers: headers
-			})
-		.map(res => res.json())
-		.subscribe(
-			data => this._populateEpisodeInfo(data),
-			err => console.log(err),
-			() => console.log()
-		);
-	}
-	_populateEpisodeInfo(data) {
-		this.mark = data.mark;
-		this.episodeTitle = data.title;
-		this.subtitle = data.subtitle;
-		this.description = data.description;
-		this.pubdate = new Date(data.pubdate);
-		this.duration = data.duration;
-		this.podcast = data.podcast;
-
-		var headers = new Headers();
-		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get('http://api.test.com:8000/podcast/' + data.podcast + '/', {
+		this.http.get('http://api.test.com:8000/podcast/' + this.routeParam.params.id + '/', {
 			headers: headers
 			})
 		.map(res => res.json())
@@ -88,14 +70,32 @@ export class EpisodeCmp {
 			err => console.log(err),
 			() => console.log()
 		);
+
+		this.http.get('http://api.test.com:8000/episode/?podcast=' + this.routeParam.params.id, {
+			headers: headers
+			})
+		.map(res => res.json())
+		.subscribe(
+			data => this.episodes = data,
+			err => console.log(err),
+			() => console.log()
+		);
 	}
 
 	_populatePodcastInfo(data) {
-		this.image = data.image;
-		this.podcastTitle = data.title;
-		this.subscribed = data.subscribed;
+		this.title = data.title;
 		this.author = data.author;
 		this.publisher = data.publisherName;
+		this.summary = data.summary;
+		this.category = data.category;
+		this.explicit = data.explicit;
+		this.link = data.link;
+		this.language = data.language;
+		this.copyright = data.copyright;
+		this.blocked = data.blocked;
+		this.complete = data.complete;
+		this.keywords = data.keywords;
+		this.image = data.image;
 	}
 }
 

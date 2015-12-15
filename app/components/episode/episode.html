@@ -8,7 +8,7 @@
   </a>
 
 <div class="center">
-	<h1>{{author}}</h1>
+	<h1><a [router-link]="['/Podcast', {id: podcast}]">{{author}}</a></h1>
 	<section>
 	<div class="content-block">
 		<div class="row">
@@ -21,7 +21,7 @@
 		<div id="information-block">
 			<button type="button" (click)="service.addEpisode(id)" class="btn btn-default">Add to queue</button>
 			<p><b>Publisher:</b> {{publisher}} </p>
-			<p><b>Published:</b> {{pubdate}} </p>
+			<p><b>Published:</b> {{pubdate | date:'mediumDate'}} </p>
 			<p><b>Description:</b> {{description}}</p>
 			<p><b>Runtime:</b> {{duration}} </p>
 		</div>
@@ -31,7 +31,7 @@
 	<section>
 	<h1>Comments</h1>
 	<div class="content-block">
-	<comment-form [id]="id" [objectType]="objectType"></comment-form>
+	<comment-form [object_type]="object_type" [id]="id"></comment-form>
 	<ul>
 		<li *ng-for="#comment of comments">
 			<div *ng-if="comment.parent">

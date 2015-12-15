@@ -16,7 +16,6 @@ export class EpisodeService {
 		return this.episodeList.shift();
 	}
 	addEpisode(id) {
-		console.log("EpisodeList before: " + this.episodeList);
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');

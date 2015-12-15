@@ -1,11 +1,11 @@
 import {Component} from 'angular2/angular2';
-import {Http, Headers} from 'angular2/http';
+import {Http} from 'angular2/http';
 import {EpisodeService} from '../../services/episode_service';
 
 @Component({
 	selector: 'player'
 	templateUrl: './components/app/player.html',
-	styleUrls: ['./components/app/player.css'],
+	styleUrls: ['./components/app/player.css']
 })
 
 export class PlayerCmp {
@@ -66,13 +66,11 @@ export class PlayerCmp {
 				audioElement.pause();
 				document.querySelector('#play').className = 'glyphicon glyphicon-play';
 			}
-		}
-		else {
+		} else {
 			element = this.service.getNextEpisode();
-			if(typeof element === "undefined") {
-				alert("Nothing loaded in player");
-			}
-			else {
+			if(typeof element === 'undefined') {
+				alert('Nothing loaded in player');
+			} else {
 				this._populateEpisode(element);
 				audioElement.play();
 				document.querySelector('#play').className = 'glyphicon glyphicon-pause';
