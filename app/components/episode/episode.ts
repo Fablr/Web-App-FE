@@ -1,9 +1,10 @@
 /// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
 
-import {Component, CORE_DIRECTIVES, ViewEncapsulation} from 'angular2/angular2';
+import {Component, ViewEncapsulation} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 import {EpisodeService} from '../../services/episode_service';
 import {CommentFormCmp} from '../app/comment_form';
-import { RouterLink, RouteParams, ROUTER_DIRECTIVES } from 'angular2/router';
+import { RouterLink, RouteParams, ROUTER_DIRECTIVES, Location } from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
 //import {Observable} from 'rx';
 //import * as io from 'socket.io-client';
@@ -14,6 +15,7 @@ import {Http, Headers} from 'angular2/http';
   styleUrls: ['./components/episode/episode.css'],
   encapsulation: ViewEncapsulation.None,
   directives: [CORE_DIRECTIVES, RouterLink, ROUTER_DIRECTIVES, CommentFormCmp]
+//  directives: [RouterLink, CORE_DIRECTIVES]
 })
 export class EpisodeCmp {
 	comments: Array<Object>;
@@ -21,26 +23,25 @@ export class EpisodeCmp {
 	routeParam: RouteParams;
 	id: number;
 	object_type: string;
-	mark;
-	episodeTitle;
-	podcastTitle;
-	subtitle;
-	description;
-	pubdate;
-	duration;
-	explicit;
-	subscribed;
-	author;
-	publisher;
+	mark: string;
+	episodeTitle: string;
+	podcastTitle: string;
+	subtitle: string;
+	description: string;
+	pubdate: string;
+	duration: string;
+	explicit: boolean;
+	subscribed: boolean;
+	author: string;
+	publisher: string;
 	podcast: number;
 	// need to set an actual default
 	image = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
 
-	constructor(service: EpisodeService, routeParam: RouteParams, public http:Http) {
+	constructor(service: EpisodeService, routeParam: RouteParams, public http:Http, location: Location) {
 		this.service = service;
 		this.routeParam = routeParam;
 		this.id = this.routeParam.params.id;
-		this.id2 = '20';
 		this.object_type = 'episode';
 		//this.service.startEpisode(this.routeParam.params.id);
 
@@ -50,9 +51,8 @@ export class EpisodeCmp {
 		this.http.get('http://api.test.com:8000/episode/' + this.routeParam.params.id + '/comments/', {
 			headers: headers
 			})
-		.map(res => res.json())
 		.subscribe(
-			data => this.comments = data,
+			data => this.comments = data.json(),
 			err => console.log(err),
 			() => console.log()
 		);
@@ -60,9 +60,8 @@ export class EpisodeCmp {
 		this.http.get('http://api.test.com:8000/episode/' + this.routeParam.params.id + '/', {
 			headers: headers
 			})
-		.map(res => res.json())
 		.subscribe(
-			data => this._populateEpisodeInfo(data),
+			data => this._populateEpisodeInfo(data.json()),
 			err => console.log(err),
 			() => console.log()
 		);
@@ -82,20 +81,16 @@ export class EpisodeCmp {
 		this.http.get('http://api.test.com:8000/podcast/' + data.podcast + '/', {
 			headers: headers
 			})
-		.map(res => res.json())
 		.subscribe(
-			data => this._populatePodcastInfo(data),
+			data => { 
+				this.image = data.json().image;
+				this.podcastTitle = data.json().title;
+				this.subscribed = data.json().subscribed;
+				this.author = data.json().author;
+				this.publisher = data.json().publisherName;},
 			err => console.log(err),
 			() => console.log()
 		);
-	}
-
-	_populatePodcastInfo(data) {
-		this.image = data.image;
-		this.podcastTitle = data.title;
-		this.subscribed = data.subscribed;
-		this.author = data.author;
-		this.publisher = data.publisherName;
 	}
 }
 

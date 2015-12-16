@@ -1,4 +1,5 @@
-import {Component, FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators, Input} from 'angular2/angular2';
+import {Component, Input} from 'angular2/core';
+import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators} from 'angular2/common';
 import {Http, Headers} from 'angular2/http';
 @Component({
   selector: 'comment-form',

@@ -1,6 +1,7 @@
 /// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
 
-import {Component, CORE_DIRECTIVES, ViewEncapsulation} from 'angular2/angular2';
+import {Component, ViewEncapsulation} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 import {EpisodeService} from '../../services/episode_service';
 import {CommentFormCmp} from '../app/comment_form';
 import { RouterLink, RouteParams, ROUTER_DIRECTIVES } from 'angular2/router';
@@ -54,9 +55,8 @@ export class PodcastCmp {
 		this.http.get('http://api.test.com:8000/podcast/' + this.routeParam.params.id + '/comments/', {
 			headers: headers
 			})
-		.map(res => res.json())
 		.subscribe(
-			data => this.comments = data,
+			data => this.comments = data.json(),
 			err => console.log(err),
 			() => console.log()
 		);
@@ -64,9 +64,8 @@ export class PodcastCmp {
 		this.http.get('http://api.test.com:8000/podcast/' + this.routeParam.params.id + '/', {
 			headers: headers
 			})
-		.map(res => res.json())
 		.subscribe(
-			data => this._populatePodcastInfo(data),
+			data => this._populatePodcastInfo(data.json()),
 			err => console.log(err),
 			() => console.log()
 		);
@@ -74,9 +73,8 @@ export class PodcastCmp {
 		this.http.get('http://api.test.com:8000/episode/?podcast=' + this.routeParam.params.id, {
 			headers: headers
 			})
-		.map(res => res.json())
 		.subscribe(
-			data => this.episodes = data,
+			data => this.episodes = data.json(),
 			err => console.log(err),
 			() => console.log()
 		);

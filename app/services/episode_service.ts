@@ -1,5 +1,5 @@
 /// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
-import { Injectable } from 'angular2/angular2';
+import { Injectable } from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 
 @Injectable()

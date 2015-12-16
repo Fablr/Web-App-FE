@@ -1,6 +1,6 @@
 /// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
 
-import {Component, ViewEncapsulation} from 'angular2/angular2';
+import {Component, ViewEncapsulation} from 'angular2/core';
 import {EpisodeService} from '../../services/episode_service';
 
 import {
