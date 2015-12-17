@@ -1,5 +1,3 @@
-/// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
-
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {EpisodeService} from '../../services/episode_service';
@@ -48,7 +46,7 @@ export class EpisodeCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get('http://api.test.com:8000/episode/' + this.routeParam.params.id + '/comments/', {
+		this.http.get(System.http_api + '/episode/' + this.routeParam.params.id + '/comments/', {
 			headers: headers
 			})
 		.subscribe(
@@ -57,7 +55,7 @@ export class EpisodeCmp {
 			() => console.log()
 		);
 
-		this.http.get('http://api.test.com:8000/episode/' + this.routeParam.params.id + '/', {
+		this.http.get(System.http_api + '/episode/' + this.routeParam.params.id + '/', {
 			headers: headers
 			})
 		.subscribe(
@@ -78,11 +76,11 @@ export class EpisodeCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get('http://api.test.com:8000/podcast/' + data.podcast + '/', {
+		this.http.get(System.http_api + '/podcast/' + data.podcast + '/', {
 			headers: headers
 			})
 		.subscribe(
-			data => { 
+			data => {
 				this.image = data.json().image;
 				this.podcastTitle = data.json().title;
 				this.subscribed = data.json().subscribed;

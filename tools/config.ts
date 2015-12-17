@@ -31,6 +31,8 @@ export const VERSION              = appVersion();
 
 export const VERSION_NPM          = '2.14.7';
 export const VERSION_NODE         = '4.0.0';
+const DEV_API_URL          = 'http://api.test.com:8000';
+const PROD_API_URL         = 'http://api.fablersite-dev.elasticbeanstalk.com/';
 
 // Declare NPM dependencies (Note that globs should not be injected).
 export const NPM_DEPENDENCIES = [
@@ -65,6 +67,7 @@ export const DEPENDENCIES = NPM_DEPENDENCIES.concat(APP_ASSETS);
 // ----------------
 // SystemsJS Configuration.
 const SYSTEM_CONFIG_DEV = {
+  http_api: DEV_API_URL,
   defaultJSExtensions: true,
   paths: {
     'bootstrap': `${APP_ROOT}bootstrap`,
@@ -73,6 +76,7 @@ const SYSTEM_CONFIG_DEV = {
 };
 
 const SYSTEM_CONFIG_PROD = {
+  http_api: PROD_API_URL,
   defaultJSExtensions: true,
   bundles: {
     'bundles/app': ['bootstrap']

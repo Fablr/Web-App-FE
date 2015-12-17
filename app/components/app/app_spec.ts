@@ -6,13 +6,13 @@ import {
   it,
   beforeEachProviders
 } from 'angular2/testing';
-import {Component, View, provide, DirectiveResolver} from 'angular2/angular2';
+import {Component, View, provide, DirectiveResolver} from 'angular2/core';
 
 import {Location, Router, RouteRegistry} from 'angular2/router';
 import {SpyLocation} from 'angular2/src/mock/location_mock';
 import {RootRouter} from 'angular2/src/router/router';
 
-import {DOM} from 'angular2/src/core/dom/dom_adapter';
+import {DOM} from 'angular2/core/dom/dom_adapter';
 import {AppCmp} from './app';
 
 export function main() {

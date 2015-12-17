@@ -19,7 +19,7 @@ export class EpisodeService {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get('http://api.test.com:8000/episode/' + id + '/', {
+		this.http.get(System.http_api + '/episode/' + id + '/', {
 			headers: headers
 			})
 		.map(res => res.json())

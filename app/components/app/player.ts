@@ -3,7 +3,7 @@ import {Http} from 'angular2/http';
 import {EpisodeService} from '../../services/episode_service';
 
 @Component({
-	selector: 'player'
+	selector: 'player',
 	templateUrl: './components/app/player.html',
 	styleUrls: ['./components/app/player.css']
 })
@@ -13,7 +13,8 @@ export class PlayerCmp {
 	slider;
 	audioElement;
 	audioScrubber;
-	volumeScrubber;
+	volumeScrubber: Element;
+	service;
 	constructor(service: EpisodeService, public http:Http) {
 		this.service = service;
 		audioScrubber = new Scrubber('scrubber', 0);

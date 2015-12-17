@@ -1,5 +1,3 @@
-/// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
-
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {EpisodeService} from '../../services/episode_service';
@@ -7,7 +5,6 @@ import {CommentFormCmp} from '../app/comment_form';
 import { RouterLink, RouteParams, ROUTER_DIRECTIVES } from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
 //import {Observable} from 'rx';
-//import * as io from 'socket.io-client';
 
 @Component({
   selector: 'podcast',
@@ -35,12 +32,8 @@ export class PodcastCmp {
 	blocked: boolean;
 	complete: boolean;
 	keywords: string;
-	image: string;
-	
-	
-
 	// need to set an actual default
-	image = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
+	image: string = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
 
 	constructor(service: EpisodeService, routeParam: RouteParams, public http:Http) {
 		this.service = service;
@@ -52,7 +45,7 @@ export class PodcastCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get('http://api.test.com:8000/podcast/' + this.routeParam.params.id + '/comments/', {
+		this.http.get(System.http_api + 'podcast/' + this.routeParam.params.id + '/comments/', {
 			headers: headers
 			})
 		.subscribe(
@@ -61,7 +54,7 @@ export class PodcastCmp {
 			() => console.log()
 		);
 
-		this.http.get('http://api.test.com:8000/podcast/' + this.routeParam.params.id + '/', {
+		this.http.get(System.http_api + 'podcast/' + this.routeParam.params.id + '/', {
 			headers: headers
 			})
 		.subscribe(
@@ -70,7 +63,7 @@ export class PodcastCmp {
 			() => console.log()
 		);
 
-		this.http.get('http://api.test.com:8000/episode/?podcast=' + this.routeParam.params.id, {
+		this.http.get(System.http_api + '/episode/?podcast=' + this.routeParam.params.id, {
 			headers: headers
 			})
 		.subscribe(

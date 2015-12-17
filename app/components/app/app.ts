@@ -1,5 +1,3 @@
-/// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
-
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {EpisodeService} from '../../services/episode_service';
 
@@ -7,7 +5,6 @@ import {
   RouteConfig,
   ROUTER_DIRECTIVES
 } from 'angular2/router';
-// import {HTTP_PROVIDERS} from 'http/http';
 
 import {HomeCmp} from '../home/home';
 import {EpisodeCmp} from '../episode/episode';

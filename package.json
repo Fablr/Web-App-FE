@@ -1,9 +1,9 @@
 {
-  "name": "angular2-seed",
-  "version": "0.0.0",
-  "description": "Seed for Angular 2 apps",
+  "name": "fabler-fe",
+  "version": "0.0.1",
+  "description": "Web app for Fabler-fe",
   "repository": {
-    "url": "https://github.com/mgechev/angular2-seed"
+    "url": "https://github.com/fabler/webApp-fe"
   },
   "scripts": {
     "build.dev": "gulp build.dev",

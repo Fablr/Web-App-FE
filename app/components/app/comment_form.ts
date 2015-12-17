@@ -22,7 +22,7 @@ export class CommentFormCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.post('http://api.test.com:8000/' + this.object_type + '/' + this.id + '/comments/', submit_comment, {
+		this.http.post(System.http_api + this.object_type + '/' + this.id + '/comments/', submit_comment, {
 			headers: headers
 			})
 		.map(res => res.json())
