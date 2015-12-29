@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {EpisodeService} from '../../services/episode_service';
+import {FablerService} from '../../services/fabler_service';
 
 import {
   RouteConfig,
@@ -10,14 +11,16 @@ import {HomeCmp} from '../home/home';
 import {EpisodeCmp} from '../episode/episode';
 import {PodcastCmp} from '../podcast/podcast';
 import {PlayerCmp} from './player';
+import {NavCmp} from '../navbar/navbar';
+import {Login} from './login';
 
 @Component({
   selector: 'app',
-  viewBindings: [EpisodeService],
+  viewBindings: [EpisodeService, FablerService],
   templateUrl: './components/app/app.html',
   styleUrls: ['./components/app/app.css'],
   encapsulation: ViewEncapsulation.None,
-  directives: [ROUTER_DIRECTIVES, PlayerCmp]
+  directives: [ROUTER_DIRECTIVES, PlayerCmp, Login, NavCmp]
 })
 @RouteConfig([
   { path: '/', component: HomeCmp, as: 'Home' },

@@ -1,19 +1,17 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {EpisodeService} from '../../services/episode_service';
+import {FablerService} from '../../services/fabler_service';
 import {CommentFormCmp} from '../app/comment_form';
-import { RouterLink, RouteParams, ROUTER_DIRECTIVES, Location } from 'angular2/router';
+import {RouteParams, RouterLink} from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
-//import {Observable} from 'rx';
-//import * as io from 'socket.io-client';
 
 @Component({
   selector: 'episode',
   templateUrl: './components/episode/episode.html',
   styleUrls: ['./components/episode/episode.css'],
   encapsulation: ViewEncapsulation.None,
-  directives: [CORE_DIRECTIVES, RouterLink, ROUTER_DIRECTIVES, CommentFormCmp]
-//  directives: [RouterLink, CORE_DIRECTIVES]
+  directives: [CORE_DIRECTIVES, RouterLink, CommentFormCmp]
 })
 export class EpisodeCmp {
 	comments: Array<Object>;
@@ -33,10 +31,13 @@ export class EpisodeCmp {
 	author: string;
 	publisher: string;
 	podcast: number;
+	isAuth: boolean;
 	// need to set an actual default
 	image = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
 
-	constructor(service: EpisodeService, routeParam: RouteParams, public http:Http, location: Location) {
+	constructor(service: EpisodeService, routeParam: RouteParams, public http:Http, fablerService: FablerService) {
+		this.fablerService = fablerService;
+		this.isAuth = this.fablerService.isAuth();
 		this.service = service;
 		this.routeParam = routeParam;
 		this.id = this.routeParam.params.id;

@@ -1,4 +1,3 @@
-/// <reference path="../../../tools/typings/tsd/tsd.d.ts" />
 import { Injectable } from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 
@@ -15,16 +14,15 @@ export class EpisodeService {
 	getNextEpisode() {
 		return this.episodeList.shift();
 	}
-	addEpisode(id) {
+	addEpisode(id:number) {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 		this.http.get(System.http_api + '/episode/' + id + '/', {
 			headers: headers
 			})
-		.map(res => res.json())
 		.subscribe(
-			data => this.testMethod(data),
+			data => this.testMethod(data.json()),
 			err => console.log(err),
 			() => console.log()
 		);

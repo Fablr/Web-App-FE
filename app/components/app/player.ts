@@ -4,7 +4,39 @@ import {EpisodeService} from '../../services/episode_service';
 
 @Component({
 	selector: 'player',
-	templateUrl: './components/app/player.html',
+	template: `
+		<footer class="footer navbar-fixed-bottom">
+			<div id="center">
+				<div class="form-inline">
+						<button type="button" class="btn btn-default" aria-label="Left Align">
+							<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
+						</button>
+						<button type="button" (click)="PlayPause()" class="btn btn-default" id="playpause">
+							<span class="glyphicon glyphicon-play" id="play" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+						</button>
+						
+						<label for="seek" id="curtime">00:00:00</label>	
+						<div id="scrubber">
+							<div id="progress"></div>
+							<div id="thumb"></div>
+						</div>
+						<div id="duration">00:00:00</div>
+						<div id="volume">
+							<div id="progress"></div>
+							<div id="thumb"></div>
+						</div>
+						<div id="rightheader">
+						<button type="button" class="btn btn-default pull-right" id="mute">
+							<span class="glyphicon glyphicon-volume-up" id="volumemute" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</footer>
+		`,
 	styleUrls: ['./components/app/player.css']
 })
 

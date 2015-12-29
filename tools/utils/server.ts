@@ -20,7 +20,7 @@ export function serveSPA() {
   );
 
   server.listen(PORT, () =>
-    openResource('http://localhost:' + PORT + APP_BASE + APP_DEST)
+    openResource('http://test.com:' + PORT + APP_BASE + APP_DEST)
   );
 }
 
