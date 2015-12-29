@@ -17,37 +17,32 @@ export class EpisodeCmp {
 	comments: Array<Object>;
 	episode: Array<Object>;
 	routeParam: RouteParams;
-	id: number;
+	id: string;
 	object_type: string;
 	mark: string;
 	episodeTitle: string;
 	podcastTitle: string;
 	subtitle: string;
 	description: string;
-	pubdate: string;
+	pubdate: Date;
 	duration: string;
 	explicit: boolean;
 	subscribed: boolean;
 	author: string;
 	publisher: string;
 	podcast: number;
-	isAuth: boolean;
 	// need to set an actual default
 	image = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
 
-	constructor(service: EpisodeService, routeParam: RouteParams, public http:Http, fablerService: FablerService) {
-		this.fablerService = fablerService;
-		this.isAuth = this.fablerService.isAuth();
-		this.service = service;
-		this.routeParam = routeParam;
-		this.id = this.routeParam.params.id;
+	constructor(public episodeService: EpisodeService, routeParam: RouteParams, public http:Http, public fablerService: FablerService) {
+		this.id = routeParam.get('id');
 		this.object_type = 'episode';
 		//this.service.startEpisode(this.routeParam.params.id);
 
 		var headers = new Headers();
-		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
+		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get(System.http_api + '/episode/' + this.routeParam.params.id + '/comments/', {
+		this.http.get(fablerService.get_api() + 'episode/' + this.id + '/comments/', {
 			headers: headers
 			})
 		.subscribe(
@@ -56,7 +51,7 @@ export class EpisodeCmp {
 			() => console.log()
 		);
 
-		this.http.get(System.http_api + '/episode/' + this.routeParam.params.id + '/', {
+		this.http.get(fablerService.get_api() + 'episode/' + this.id + '/', {
 			headers: headers
 			})
 		.subscribe(
@@ -75,9 +70,9 @@ export class EpisodeCmp {
 		this.podcast = data.podcast;
 
 		var headers = new Headers();
-		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
+		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get(System.http_api + '/podcast/' + data.podcast + '/', {
+		this.http.get(this.fablerService.get_api() + 'podcast/' + data.podcast + '/', {
 			headers: headers
 			})
 		.subscribe(

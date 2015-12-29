@@ -1,11 +1,11 @@
 import { Injectable } from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
+import {FablerService} from './fabler_service';
 
 @Injectable()
 export class EpisodeService {
 	episodeList:string[] = [];
-	http:Http;
-	constructor(public http:Http) {
+	constructor(public http:Http, public fablerService: FablerService) {
 		this.episodeList = [];
 	}
 	/*public getPrevEpisode() {
@@ -16,9 +16,9 @@ export class EpisodeService {
 	}
 	addEpisode(id:number) {
 		var headers = new Headers();
-		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
+		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get(System.http_api + '/episode/' + id + '/', {
+		this.http.get(this.fablerService.get_api() + 'episode/' + id + '/', {
 			headers: headers
 			})
 		.subscribe(

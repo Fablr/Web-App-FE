@@ -24,7 +24,7 @@ import {Login} from './login';
 })
 @RouteConfig([
   { path: '/', component: HomeCmp, as: 'Home' },
-  { path: '/episode/:id', component: EpisodeCmp, as: 'Episode' }
+  { path: '/episode/:id', component: EpisodeCmp, as: 'Episode' },
   { path: '/podcast/:id', component: PodcastCmp, as: 'Podcast' }
 ])
 export class AppCmp {

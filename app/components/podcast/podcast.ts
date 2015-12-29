@@ -4,6 +4,7 @@ import {EpisodeService} from '../../services/episode_service';
 import {CommentFormCmp} from '../app/comment_form';
 import { RouterLink, RouteParams, ROUTER_DIRECTIVES } from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
+import {FablerService} from '../../services/fabler_service';
 //import {Observable} from 'rx';
 
 @Component({
@@ -18,7 +19,7 @@ export class PodcastCmp {
 	podcast: Array<Object>;
 	episodes: Array<Object>;
 	routeParam: RouteParams;
-	id: number;
+	id: string;
 	object_type: string;
 	title: string;
 	author: string;
@@ -35,17 +36,15 @@ export class PodcastCmp {
 	// need to set an actual default
 	image: string = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
 
-	constructor(service: EpisodeService, routeParam: RouteParams, public http:Http) {
-		this.service = service;
-		this.routeParam = routeParam;
-		this.id = this.routeParam.params.id;
+	constructor(public episodeService: EpisodeService, routeParam: RouteParams, public http:Http, public fablerService: FablerService) {
+		this.id = routeParam.get('id');
 		this.object_type = 'podcast';
 		//this.service.startEpisode(this.routeParam.params.id);
 
 		var headers = new Headers();
-		headers.append('Authorization', 'Bearer cIpKsqIy6lghD5lANwT0lVPIzNGiT6');
+		headers.append('Authorization', 'Bearer ' + fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		this.http.get(System.http_api + 'podcast/' + this.routeParam.params.id + '/comments/', {
+		this.http.get(fablerService.get_api() + 'podcast/' + this.id + '/comments/', {
 			headers: headers
 			})
 		.subscribe(
@@ -54,7 +53,7 @@ export class PodcastCmp {
 			() => console.log()
 		);
 
-		this.http.get(System.http_api + 'podcast/' + this.routeParam.params.id + '/', {
+		this.http.get(fablerService.get_api() + 'podcast/' + this.id + '/', {
 			headers: headers
 			})
 		.subscribe(
@@ -63,7 +62,7 @@ export class PodcastCmp {
 			() => console.log()
 		);
 
-		this.http.get(System.http_api + '/episode/?podcast=' + this.routeParam.params.id, {
+		this.http.get(fablerService.get_api() + 'episode/?podcast=' + this.id, {
 			headers: headers
 			})
 		.subscribe(

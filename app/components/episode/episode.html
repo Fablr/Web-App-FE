@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div id="information-block">
-			<button type="button" (click)="service.addEpisode(id)" class="btn btn-default">Add to queue</button>
+			<button type="button" (click)="episodeService.addEpisode(id)" class="btn btn-default">Add to queue</button>
 			<p><b>Publisher:</b> {{publisher}} </p>
 			<p><b>Published:</b> {{pubdate | date:'mediumDate'}} </p>
 			<p><b>Description:</b> {{description}}</p>
@@ -31,7 +31,7 @@
 	<section>
 	<h1>Comments</h1>
 	<div class="content-block">
-	<div *ngIf="isAuth">
+	<div *ngIf="fablerService.isAuth()">
 		<comment-form [object_type]="object_type" [id]="id"></comment-form>
 	</div>
 	<ul>

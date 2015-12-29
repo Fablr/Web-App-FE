@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES, FormBuilder, Validators} from 'angular2/common';
-import {FablerService} from '../../services/fabler_service';) {
+import {FORM_DIRECTIVES, FormBuilder, Validators, ControlGroup} from 'angular2/common';
+import {FablerService} from '../../services/fabler_service';
 
 
 @Component({
@@ -26,8 +26,7 @@ import {FablerService} from '../../services/fabler_service';) {
 })
 export class Login {
 	loginForm: ControlGroup;
-	constructor(fb: FormBuilder, service:FablerService) {
-		this.service = service;
+	constructor(fb: FormBuilder, public fablerService:FablerService) {
 		this.loginForm = fb.group({
 			username: ['', Validators.required],
      	 	password: ['', Validators.required]
@@ -36,7 +35,7 @@ export class Login {
 	login(event) {
 		event.preventDefault();
 		console.log(this.loginForm.value.username);
-		this.service.Login(this.loginForm.value.username, this.loginForm.value.password);
+		this.fablerService.Login(this.loginForm.value.username, this.loginForm.value.password);
 	}
 
 }

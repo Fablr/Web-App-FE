@@ -25,6 +25,7 @@ gulp.task('postinstall', done =>
 // Build dev.
 gulp.task('build.dev', done =>
   runSequence('clean.dist',
+              'build.preprocess.dev',
               'tslint',
               'build.sass.dev',
               'build.ng2bs.dev',
@@ -35,7 +36,7 @@ gulp.task('build.dev', done =>
 
 // --------------
 // Build prod.
-gulp.task('build.prod', done =>
+/*gulp.task('build.prod', done =>
   runSequence('clean.dist',
               'clean.tmp',
               'tslint',
@@ -46,6 +47,17 @@ gulp.task('build.prod', done =>
               'build.deps',
               'build.js.prod',
               'build.bundles',
+              'build.index',
+              done));*/
+
+gulp.task('build.prod', done =>
+  runSequence('clean.dist',
+              'build.preprocess.prod',
+			        'tslint',
+              'build.sass.dev',
+              'build.ng2bs.dev',
+              'build.img.dev',
+              'build.js.dev',
               'build.index',
               done));
 

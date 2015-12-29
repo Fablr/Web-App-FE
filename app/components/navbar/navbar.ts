@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouterLink, Location} from 'angular2/router';
+import {RouterLink} from 'angular2/router';
 import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import {Login} from '../app/login';
 import {FablerService} from '../../services/fabler_service';
@@ -12,7 +12,7 @@ import {FablerService} from '../../services/fabler_service';
 			<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -58,24 +58,20 @@ import {FablerService} from '../../services/fabler_service';
 	selector: 'navbar'
 })
 export class NavCmp {
-	login_text:string = "Login";
+	login_text:string = 'Login';
 	username:string = localStorage.getItem('username');
-	constructor(service: FablerService, location: Location){
-		this.location = location;
-		this.service = service;
-		this.login_text = "Login";
-		if(localStorage.getItem('username') != null) {
+	constructor(public fablerService: FablerService) {
+		this.login_text = 'Login';
+		if(localStorage.getItem('username') !== null) {
 			this.login_text = localStorage.getItem('username');
 		}
 	}
-	
+
 	toggled(open:boolean):void {
     	//$event.preventDefault();
 		//console.log('Dropdown is now: ', open);
-
   	}
-	  
 	logout() {
-		this.service.Logout();
+		this.fablerService.Logout();
 	}
 }

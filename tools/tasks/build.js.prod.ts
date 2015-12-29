@@ -1,5 +1,5 @@
 import {join} from 'path';
-import {APP_SRC, TMP_DIR} from '../config';
+import {APP_SRC, TMP_DIR, PROD_CLIENT_ID, PROD_API_URL} from '../config';
 import {templateLocals, tsProjectFn} from '../utils';
 
 export = function buildJSDev(gulp, plugins) {
@@ -12,6 +12,7 @@ export = function buildJSDev(gulp, plugins) {
 
     let result = gulp.src(src)
       .pipe(plugins.plumber())
+	    .pipe(plugins.preprocess({context: {CLIENT_ID: PROD_CLIENT_ID, API_HTTP: PROD_API_URL}}))
       .pipe(plugins.inlineNg2Template({ base: TMP_DIR }))
       .pipe(plugins.typescript(tsProject));
 
