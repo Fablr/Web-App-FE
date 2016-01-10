@@ -47,7 +47,6 @@ export class FablerService {
 				headers.append('Content-Type', 'application/x-www-form-urlencoded');
 				this.http.post(this.api_http + 'o/token/', 'grant_type=refresh_token' + '&client_id=' +
 					this.client + '&refresh_token=' + localStorage.getItem('refresh_token'), {
-	
 					headers: headers
 				})
 				.subscribe(
