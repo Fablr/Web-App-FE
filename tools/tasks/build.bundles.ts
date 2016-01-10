@@ -18,8 +18,7 @@ export = function bundles(gulp, plugins) {
     ], () => done());
 
     function bundleApp(done) {
-      builder.bundle(
-        'bootstrap - angular2/*',
+      builder.bundle('bootstrap - angular2/*',
         join(BUNDLES_DEST, 'app.js'), BUNDLE_OPTS).then(done);
     }
   };

@@ -70,8 +70,6 @@ export const DEPENDENCIES = NPM_DEPENDENCIES.concat(APP_ASSETS);
 // ----------------
 // SystemsJS Configuration.
 const SYSTEM_CONFIG_DEV = {
-  http_api: DEV_API_URL,
-  client_id: DEV_CLIENT_ID,
   defaultJSExtensions: true,
   paths: {
     'bootstrap': `${APP_ROOT}bootstrap`,
@@ -80,8 +78,6 @@ const SYSTEM_CONFIG_DEV = {
 };
 
 const SYSTEM_CONFIG_PROD = {
-  http_api: PROD_API_URL,
-  client_id: PROD_CLIENT_ID,
   defaultJSExtensions: true,
   bundles: {
     'bundles/app': ['bootstrap']

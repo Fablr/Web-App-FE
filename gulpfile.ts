@@ -36,30 +36,30 @@ gulp.task('build.dev', done =>
 
 // --------------
 // Build prod.
-/*gulp.task('build.prod', done =>
+gulp.task('build.prod', done =>
   runSequence('clean.dist',
               'clean.tmp',
               'tslint',
               'build.sass.dev',
-              'build.ng2bs.dev',
+              //'build.ng2bs.dev',
               'build.img.dev',
               'build.html_css.prod',
               'build.deps',
               'build.js.prod',
               'build.bundles',
               'build.index',
-              done));*/
+              done));
 
-gulp.task('build.prod', done =>
+/*gulp.task('build.prod', done =>
   runSequence('clean.dist',
               'build.preprocess.prod',
-			        'tslint',
+			  'tslint',
               'build.sass.dev',
               'build.ng2bs.dev',
               'build.img.dev',
-              'build.js.dev',
+              'build.js.prod',
               'build.index',
-              done));
+              done));*/
 
 // --------------
 // Watch.
@@ -90,13 +90,6 @@ gulp.task('serve', done =>
               'watch.serve',
               done));
 
-// --------------
-// Serve.
-gulp.task('serve.prod', done =>
-  runSequence('build.prod',
-              'server.start',
-              'watch.serve',
-              done));
 
 // --------------
 // Docs

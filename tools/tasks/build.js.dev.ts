@@ -14,7 +14,7 @@ export = function buildJSDev(gulp, plugins) {
       .pipe(plugins.plumber())
       // Won't be required for non-production build after the change
       .pipe(plugins.inlineNg2Template({ base: APP_SRC }))
-	    .pipe(plugins.preprocess({context: {CLIENT_ID: DEV_CLIENT_ID, API_HTTP: DEV_API_URL}}))
+	  .pipe(plugins.preprocess({context: {CLIENT_ID: DEV_CLIENT_ID, API_HTTP: DEV_API_URL}}))
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.typescript(tsProject));
 
