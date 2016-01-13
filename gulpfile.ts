@@ -41,7 +41,6 @@ gulp.task('build.prod', done =>
               'clean.tmp',
               'tslint',
               'build.sass.dev',
-              //'build.ng2bs.dev',
               'build.img.dev',
               'build.html_css.prod',
               'build.deps',
@@ -49,17 +48,6 @@ gulp.task('build.prod', done =>
               'build.bundles',
               'build.index',
               done));
-
-/*gulp.task('build.prod', done =>
-  runSequence('clean.dist',
-              'build.preprocess.prod',
-			  'tslint',
-              'build.sass.dev',
-              'build.ng2bs.dev',
-              'build.img.dev',
-              'build.js.prod',
-              'build.index',
-              done));*/
 
 // --------------
 // Watch.

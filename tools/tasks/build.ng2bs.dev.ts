@@ -5,9 +5,9 @@ import * as Builder from 'systemjs-builder';
 let builder = new Builder({
   defaultJSExtensions: true,
   paths: {
-    'ng2-bootstrap/ng2-bootstrap': './node_modules/ng2-bootstrap/ng2-bootstrap',
-    'angular2/*': './node_modules/angular2/*',
-    'rxjs/*': './node_modules/rxjs/*'
+    'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/ng2-bootstrap',
+    'angular2/*': 'node_modules/angular2/*',
+    'rxjs/*': 'node_modules/rxjs/*'
   }
 });
 

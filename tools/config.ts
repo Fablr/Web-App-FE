@@ -52,7 +52,8 @@ export const NPM_DEPENDENCIES = [
   { src: 'angular2/bundles/router.js', inject: 'libs', dest: LIB_DEST }, // use router.min.js with alpha47
   { src: 'angular2/bundles/http.min.js', inject: 'libs', dest: LIB_DEST },
 
-  { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true, dest: CSS_DEST }
+  { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true, dest: CSS_DEST },
+
 ];
 
 // Declare local files that needs to be injected
@@ -92,7 +93,8 @@ export const SYSTEM_CONFIG_BUILDER = {
   paths: {
     '*': `${TMP_DIR}/*`,
     'angular2/*': 'node_modules/angular2/*',
-    'rxjs/*': 'node_modules/rxjs/*'
+    'rxjs/*': 'node_modules/rxjs/*',
+    'ng2-bootstrap/*' : 'node_modules/ng2-bootstrap/*'
   }
 };
 

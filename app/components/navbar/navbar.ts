@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouterLink} from 'angular2/router';
-//import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import {Login} from '../app/login';
 import {FablerService} from '../../services/fabler_service';
 
@@ -51,7 +51,7 @@ import {FablerService} from '../../services/fabler_service';
 			</div>
 			</nav>
 		`,
-	directives: [RouterLink, Login]
+	directives: [RouterLink, DROPDOWN_DIRECTIVES, Login]
 })
 
 @Component({
