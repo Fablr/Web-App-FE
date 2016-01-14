@@ -34,6 +34,7 @@ export class CommentFormCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Accept', '*/*');
 		this.http.post(this.fablerService.get_api() + this.object_type + '/' + this.id + '/comments/', submit_comment, {
 			headers: headers
 			})

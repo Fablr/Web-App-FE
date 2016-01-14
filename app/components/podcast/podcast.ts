@@ -44,6 +44,7 @@ export class PodcastCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer ' + fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Accept', '*/*');
 		this.http.get(fablerService.get_api() + 'podcast/' + this.id + '/comments/', {
 			headers: headers
 			})

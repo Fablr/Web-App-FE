@@ -42,6 +42,7 @@ export class EpisodeCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Accept', '*/*');
 		this.http.get(fablerService.get_api() + 'episode/' + this.id + '/comments/', {
 			headers: headers
 			})
@@ -72,6 +73,7 @@ export class EpisodeCmp {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Accept', '*/*');
 		this.http.get(this.fablerService.get_api() + 'podcast/' + data.podcast + '/', {
 			headers: headers
 			})

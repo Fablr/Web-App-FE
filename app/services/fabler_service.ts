@@ -45,6 +45,7 @@ export class FablerService {
 			if(new Date > new Date(localStorage.getItem('token_expiration'))) {
 				var headers = new Headers();
 				headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                headers.append('Accept', '*/*');
 				this.http.post(this.api_http + 'o/token/', 'grant_type=refresh_token' + '&client_id=' +
 					this.client + '&refresh_token=' + localStorage.getItem('refresh_token'), {
 					headers: headers

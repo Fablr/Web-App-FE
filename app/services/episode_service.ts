@@ -18,6 +18,7 @@ export class EpisodeService {
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Accept', '*/*');
 		this.http.get(this.fablerService.get_api() + 'episode/' + id + '/', {
 			headers: headers
 			})
