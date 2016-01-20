@@ -17,7 +17,8 @@ export = function buildJSDev(gulp, plugins) {
 
     function minifyCss() {
       return gulp.src(join(APP_SRC, '**/*.css'))
-        .pipe(plugins.minifyCss())
+        // temporary til I can figure out why it overrides my local !important for margin in #scrubber with bootstrap3 margin
+        //.pipe(plugins.minifyCss())
         .pipe(gulp.dest(TMP_DIR));
     }
   };

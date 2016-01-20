@@ -5,16 +5,25 @@ import {EpisodeService} from '../../services/episode_service';
 @Component({
 	selector: 'player',
 	template: `
-		<footer class="footer navbar-fixed-bottom">
+        <footer class="footer navbar-fixed-bottom" id="informational">
+            <div *ngIf="title">
+                <div id="now-playing" class="slideUp">
+                    <p>{{title}}</p>
+                    <img [src]='image' height="200" width="200">
+                    <p>{{author}}</p>
+                </div>
+            </div>
+        </footer>
+        <footer class="footer navbar-fixed-bottom">
 			<div id="center">
 				<div class="form-inline">
-						<button type="button" class="btn btn-default" aria-label="Left Align">
+						<button type="button" (click)="PlayPrev()" class="btn btn-default" aria-label="Left Align">
 							<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
 						</button>
 						<button type="button" (click)="PlayPause()" class="btn btn-default" id="playpause">
 							<span class="glyphicon glyphicon-play" id="play" aria-hidden="true"></span>
 						</button>
-						<button type="button" class="btn btn-default">
+						<button type="button" (click)="PlayNext()" class="btn btn-default">
 							<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
 						</button>
 						
@@ -37,7 +46,7 @@ import {EpisodeService} from '../../services/episode_service';
 			</div>
 		</footer>
 		`,
-	styleUrls: ['./components/app/player.css']
+	styleUrls: ['./components/app/player.css', './components/app/animations.css']
 })
 
 export class PlayerCmp {
@@ -47,6 +56,11 @@ export class PlayerCmp {
 	audioScrubber;
 	volumeScrubber;
 	ended: boolean;
+
+    image = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
+    title = '';
+    author = 'Nothing Loaded';
+
 	constructor(public episodeService: EpisodeService, public http:Http) {
 		this.audioScrubber = new Scrubber('scrubber', 0);
 		this.volumeScrubber = new Scrubber('volume', 1);
@@ -64,12 +78,16 @@ export class PlayerCmp {
 				document.querySelector('#play').className = 'glyphicon glyphicon-play';
 			}
 		} else {
-			var element = this.episodeService.getNextEpisode();
+			var episode = this.episodeService.getNextEpisode();
 			// If we have another episode ready, load it into the player.
-			if(typeof element === 'undefined') {
+			if(typeof episode === 'undefined') {
 				alert('Nothing loaded in player');
 			} else {
-				this.audioElement.src = element;
+				this.audioElement.src = episode.link;
+                this.image = this.episodeService.getNextImage();
+                this.author = this.episodeService.getNextAuthor();
+                this.title = episode.title;
+
 				var __this = this;
 				this.audioElement.addEventListener('canplay',function(){
 					var sec_num = parseInt(__this.audioElement.duration, 10);
@@ -105,7 +123,28 @@ export class PlayerCmp {
 			}
 		}
 	}
-
+    PlayNext() {
+        var episode = this.episodeService.getNextEpisode();
+        if(typeof episode !== 'undefined') {
+            this.title = episode.title;
+            this.image = this.episodeService.getNextImage();
+            this.author = this.episodeService.getNextAuthor();
+			this.audioElement.src = episode.link;
+            this.audioElement.play();
+            document.querySelector('#play').className = 'glyphicon glyphicon-pause';
+        }
+    }
+    PlayPrev() {
+        var episode = this.episodeService.getPrevEpisode();
+        if(typeof episode !== 'undefined') {
+            this.title = episode.title;
+            this.image = this.episodeService.getPrevImage();
+            this.author = this.episodeService.getPrevAuthor();
+			this.audioElement.src = episode.link;
+            this.audioElement.play();
+            document.querySelector('#play').className = 'glyphicon glyphicon-pause';
+        }
+    }
 }
 
 class Scrubber {

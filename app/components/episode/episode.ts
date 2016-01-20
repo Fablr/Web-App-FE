@@ -1,3 +1,5 @@
+///<reference path='../../../tools/typings/tsd/marked/marked.d.ts'/>
+
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {EpisodeService} from '../../services/episode_service';
@@ -5,6 +7,7 @@ import {FablerService} from '../../services/fabler_service';
 import {CommentFormCmp} from '../app/comment_form';
 import {RouteParams, RouterLink} from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
+import * as marked from 'marked';
 
 @Component({
   selector: 'episode',
@@ -14,7 +17,7 @@ import {Http, Headers} from 'angular2/http';
   directives: [CORE_DIRECTIVES, RouterLink, CommentFormCmp]
 })
 export class EpisodeCmp {
-	comments: Array<Object>;
+    comments: Array<Object>;
 	episode: Array<Object>;
 	routeParam: RouteParams;
 	id: string;
@@ -28,17 +31,18 @@ export class EpisodeCmp {
 	duration: string;
 	explicit: boolean;
 	subscribed: boolean;
-	author: string;
+	author: string = 'Loading...';
 	publisher: string;
 	podcast: number;
+    reply: number = -1;
 	// need to set an actual default
 	image = 'http://slaidcleaves.com/wp-content/themes/soundcheck/images/default-artwork.png';
+    private md: MarkedStatic;
 
 	constructor(public episodeService: EpisodeService, routeParam: RouteParams, public http:Http, public fablerService: FablerService) {
-		this.id = routeParam.get('id');
+		this.md = marked;
+        this.id = routeParam.get('id');
 		this.object_type = 'episode';
-		//this.service.startEpisode(this.routeParam.params.id);
-
 		var headers = new Headers();
 		headers.append('Authorization', 'Bearer ' + this.fablerService.get_token());
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -47,7 +51,9 @@ export class EpisodeCmp {
 			headers: headers
 			})
 		.subscribe(
-			data => this.comments = data.json(),
+			data => {
+                this.comments = data.json();
+            },
 			err => console.log(err),
 			() => console.log()
 		);
@@ -57,7 +63,7 @@ export class EpisodeCmp {
 			})
 		.subscribe(
 			data => this._populateEpisodeInfo(data.json()),
-			err => console.log(err),
+			err => { this.author = 'Not Found'; console.log(err);},
 			() => console.log()
 		);
 	}
@@ -88,5 +94,11 @@ export class EpisodeCmp {
 			() => console.log()
 		);
 	}
+    parseComment(val:string) {
+        return this.md.parse(val);
+    }
+    parseDate(val:string) {
+        return new Date(val);
+    }
 }
 

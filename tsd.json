@@ -58,6 +58,12 @@
     },
     "chalk/chalk.d.ts": {
       "commit": "5a8fc5ee71701431e4fdbb80c506e3c13f85a9ff"
+    },
+    "showdown/showdown.d.ts": {
+      "commit": "d1f6bde13f2209be42e86c3686761e8bfcbb50a5"
+    },
+    "marked/marked.d.ts": {
+      "commit": "7577a2f4c134790891c52affdacdae99d802571b"
     }
   }
 }

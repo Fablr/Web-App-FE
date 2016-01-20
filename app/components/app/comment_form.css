@@ -3,4 +3,15 @@ textarea {
 	height: 150px;
 	text-align: top;
 	display: block;
+    margin-bottom: 5px;
+}
+.preview {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: white;   
+	border: 2px solid black;
+	border-radius: 5px;
+    word-wrap: break-word;
+    width: 400px;
+    display: inline-block;
 }

@@ -97,3 +97,32 @@
   border-width: 0px;
   opacity: 1;
 }
+
+
+#now-playing {
+    height: auto;
+    width: 201px;
+    border: 1px solid black;
+    margin-bottom: 52px;
+    background-color: #d3d3d3;
+    visibility: hidden;
+}
+
+@-webkit-keyframes floatBubble {
+    0% {
+        top:500px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+@keyframes floatBubble {
+    0% {
+        top:500px;
+    }
+}
+
+#informational {
+    width: 0px;
+    height: auto;
+}

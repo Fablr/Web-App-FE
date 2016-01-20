@@ -28,7 +28,6 @@ gulp.task('build.dev', done =>
               'build.preprocess.dev',
               'tslint',
               'build.sass.dev',
-              'build.ng2bs.dev',
               'build.img.dev',
               'build.js.dev',
               'build.index',

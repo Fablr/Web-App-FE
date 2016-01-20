@@ -6,7 +6,10 @@ ul
 	list-style-type: none;
 	padding: 0;	
 }
-
+p
+{
+    margin: 0px;   
+}
 .center {
 	margin: 0 auto;
 	width: 750px;
@@ -31,6 +34,10 @@ ul
 	font-size: 10px;
 }
 
+#podcast-controls {
+    margin-top: 5px;    
+}
+
 input, select, textarea{
 	color: black !important;
 }
@@ -39,3 +46,24 @@ textarea:focus, input:focus {
     color: black;
 }
 
+#comment_menu {
+    font-size: 12px;
+}
+
+#comment_menu a {
+    cursor: pointer;
+}
+
+#parent_comment {
+    margin-top: 1em;
+    border: 2px solid black; 
+    border-radius:5px;
+    background-color: #d3d3d3;
+}
+
+#child_comment {
+    margin-left: 1em;
+    border: 2px solid black;
+    border-radius:5px;
+    background-color: #d3d3d3;
+}
