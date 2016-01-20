@@ -95,7 +95,8 @@ export const SYSTEM_CONFIG_BUILDER = {
     '*': `${TMP_DIR}/*`,
     'angular2/*': 'node_modules/angular2/*',
     'rxjs/*': 'node_modules/rxjs/*',
-    'ng2-bootstrap/*' : 'node_modules/ng2-bootstrap/*'
+    'ng2-bootstrap/*' : 'node_modules/ng2-bootstrap/*',
+    'marked' : 'node_modules/marked/*'
   }
 };
 
