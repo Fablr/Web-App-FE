@@ -34,13 +34,13 @@
 	</section>
 
 	<section>
-	<div class="content-block">
     <h1>Comments</h1>
+	<div class="content-block">
 	<div *ngIf="fablerService.isAuth()">
 		<comment-form [object_type]="object_type" [id]="id"></comment-form>
 	</div>
 	<ul>
-		<li *ngFor="#comment of comments; #i = index">
+		<li *ngFor="#comment of (comments | comment_sort:'-submit_date'); #i = index">
 			<div *ngIf="comment.parent">
                 <div id="child_comment">
                     <b>{{ comment.user_name }}</b> {{ parseDate(comment.submit_date) | date:'medium'}} <br>
@@ -51,7 +51,7 @@
                             <comment-form [object_type]="object_type" [id]="id" [parent]="comment.parent"></comment-form>
                         </div>
                     </div>
-            </div>
+                </div>
 			</div>
 			<div *ngIf="!comment.parent">
                 <div id="parent_comment">

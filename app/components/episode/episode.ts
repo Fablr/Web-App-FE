@@ -9,12 +9,15 @@ import {RouteParams, RouterLink} from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
 import * as marked from 'marked';
 
+import {CommentSortPipe} from '../app/comment_pipe';
+
 @Component({
   selector: 'episode',
   templateUrl: './components/episode/episode.html',
   styleUrls: ['./components/episode/episode.css'],
   encapsulation: ViewEncapsulation.None,
-  directives: [CORE_DIRECTIVES, RouterLink, CommentFormCmp]
+  directives: [CORE_DIRECTIVES, RouterLink, CommentFormCmp],
+  pipes: [CommentSortPipe]
 })
 export class EpisodeCmp {
     comments: Array<Object>;

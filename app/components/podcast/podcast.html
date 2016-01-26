@@ -1,11 +1,11 @@
-<a [routerLink]="['/Podcast', {id: id-1}]" class="left carousel-control" role="button" data-slide="prev">
+<!--a [routerLink]="['/Podcast', {id: id-1}]" class="left carousel-control" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
 <a [routerLink]="['/Podcast', {id: id--1}]" class="right carousel-control" role="button" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
-  </a>
+</a-->
 
 <div class="center">
 	<h1>{{author}}</h1>
@@ -20,9 +20,8 @@
 			</div>
 		</div>
 		<div id="information-block">
-			<button type="button" (click)="service.addEpisode(id)" class="btn btn-default">Add to queue</button>
 			<p><b>Publisher:</b> {{publisher}} </p>
-			<p><b>Link:</b> {{link}} </p>
+			<p><b>Link: </b><a href="{{link}}">{{link}}</a> </p>
 			<p><b>Keywords:</b> {{keywords}} </p>
 		</div>
 	</div>
