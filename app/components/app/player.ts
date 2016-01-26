@@ -15,7 +15,7 @@ import {EpisodeService} from '../../services/episode_service';
             </div>
         </footer>
         <footer class="footer navbar-fixed-bottom">
-			<div id="center">
+			<div id="player">
 				<div class="form-inline">
 						<button type="button" (click)="PlayPrev()" class="btn btn-default" aria-label="Left Align">
 							<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
@@ -32,6 +32,7 @@ import {EpisodeService} from '../../services/episode_service';
 							<div id="progress"></div>
 							<div id="thumb"></div>
 						</div>
+
 						<div id="duration">00:00:00</div>
 						<div id="volume">
 							<div id="progress"></div>

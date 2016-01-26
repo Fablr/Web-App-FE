@@ -9,7 +9,7 @@ import {FablerService} from '../../services/fabler_service';
 	selector: 'navbar',
 	template: `
 		 <!-- Static navbar -->
-			<nav class="navbar navbar-default navbar-fixed-top">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
@@ -23,6 +23,7 @@ import {FablerService} from '../../services/fabler_service';
 				<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a [routerLink]="['/Home']">Home</a></li>
+                    <li><a [routerLink]="['/Episode', {id: 183}]">Working Episode Page</a></li>
 				</ul>
 				
 				<div *ngIf="!username">				

@@ -1,10 +1,22 @@
+#player {
+	position: relative;
+	top: 50%;
+	padding: 10px;
+	padding-left: 20px;
+	background-color: #222;
+    border-top: 1px solid black;
+}
+label {
+    color: #9d9d9d;
+    font-weight: normal;
+}
 #scrubber {
     position: relative;
 	display: inline-block;
 	width: 80%;
 	width: calc(100% - 480px);    
 	height: 7px;
-    background-color: black;
+    background-color: #9d9d9d;
 	margin: 0px !important;
 	left: 15px;
 	bottom: 2px;
@@ -19,7 +31,7 @@
 #scrubber #progress {
     width: 0px;
     height: 7px;
-    background-color: orange;
+    background-color: #F9A947;
 	left: 15px;
 	border-radius: 5px;
 }
@@ -44,10 +56,10 @@
 #duration {
 	position: relative;
 	display: inline-block;
-	font-weight: bold;
+
 	padding-left: 2em;
 	padding-right: 1em;
-	color: black;
+	color: #9d9d9d;
 }
 
 #scrubber #thumb:hover,
@@ -62,7 +74,7 @@
 	width: 100px;
 	height: 7px;
 	bottom: 2px;
-	background-color: black;
+	background-color: white;
 	cursor: pointer;
 	border-radius: 10px;
 }
@@ -70,7 +82,7 @@
 #volume #progress {
     width: 0px;
     height: 7px;
-    background-color: orange;
+    background-color: #F9A947;
 	left: 15px;
 	border-radius: 10px;
 }
@@ -104,7 +116,8 @@
     width: 201px;
     border: 1px solid black;
     margin-bottom: 52px;
-    background-color: #d3d3d3;
+    background-color: #222;
+    color: #9d9d9d;
     visibility: hidden;
 }
 
@@ -125,4 +138,8 @@
 #informational {
     width: 0px;
     height: auto;
+}
+
+#informational p {
+    padding: 5px;
 }

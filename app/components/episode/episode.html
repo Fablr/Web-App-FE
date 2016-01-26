@@ -34,8 +34,8 @@
 	</section>
 
 	<section>
-	<h1>Comments</h1>
 	<div class="content-block">
+    <h1>Comments</h1>
 	<div *ngIf="fablerService.isAuth()">
 		<comment-form [object_type]="object_type" [id]="id"></comment-form>
 	</div>
