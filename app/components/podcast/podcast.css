@@ -42,3 +42,20 @@ textarea:focus, input:focus {
     color: black;
 }
 
+#parent_comment {
+    margin-top: 1em;
+    border: 2px solid black; 
+    border-radius:5px;
+    background-color: white;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+#child_comment {
+    margin-left: 1em;
+    border: 2px solid black;
+    border-radius:5px;
+    background-color: white;
+    padding: 5px;
+    padding-left: 10px;
+}

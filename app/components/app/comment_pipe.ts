@@ -14,14 +14,19 @@ export class CommentSortPipe {
         if (typeof args[0] === 'undefined') {
             return array;
         }
-        array.sort((a: any, b: any) => {
+        for (var obj of array) {
+            (obj as any).parent ? this.child.push(obj) : this.parent.push(obj);
+        }
+        this.parent.sort((a: any, b: any) => {
             let left    = Number(new Date(a.submit_date));
             let right   = Number(new Date(b.submit_date));
             return right - left;
         });
-        for (var obj of array) {
-            (obj as any).parent ? this.child.push(obj) : this.parent.push(obj);
-        }
+        this.child.sort((a: any, b: any) => {
+            let left    = Number(new Date(a.submit_date));
+            let right   = Number(new Date(b.submit_date));
+            return left - right;
+        });
         for (var parent_obj of this.parent) {
             this.finalArray.push(parent_obj);
             for (var child_obj of this.child) {

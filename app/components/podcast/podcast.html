@@ -42,23 +42,39 @@
 
 
 	<section>
-	<h1>Comments</h1>
+    <h1>Comments</h1>
 	<div class="content-block">
+	<div *ngIf="fablerService.isAuth()">
 		<comment-form [object_type]="object_type" [id]="id"></comment-form>
-		<ul>
-			<li *ngFor="#comment of comments">
-				<div *ngIf="comment.parent">
-					<div [ngStyle]="{'padding-left': 1+'em' } ">
-						<b>{{ comment.user_name }}</b> {{ comment.submit_date }} <br>
-						{{ comment.comment }}
-					</div>
-				</div>
-				<div *ngIf="!comment.parent">
-					<b>{{ comment.user_name }}</b> {{ comment.submit_date }} <br>
-					{{ comment.comment }}
-				</div>
-			</li>
-		</ul>
+	</div>
+	<ul>
+		<li *ngFor="#comment of (comments | comment_sort:'-submit_date'); #i = index">
+			<div *ngIf="comment.parent">
+                <div id="child_comment">
+                    <b>{{ comment.user_name }}</b> {{ parseDate(comment.submit_date) | date:'medium'}} <br>
+                    <div [innerHtml]="parseComment(comment.comment)"></div> 
+                    <div *ngIf="fablerService.isAuth()">
+                        <div id="comment_menu"><a (click)="reply=i">Reply</a></div>
+                        <div *ngIf="reply===i">	
+                            <comment-form [object_type]="object_type" [id]="id" [parent]="comment.parent"></comment-form>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div *ngIf="!comment.parent">
+                <div id="parent_comment">
+                    <b>{{ comment.user_name }}</b> {{ parseDate(comment.submit_date) | date:'medium'}} <br>
+                    <div [innerHtml]="parseComment(comment.comment)"></div>
+                    <div *ngIf="fablerService.isAuth()">
+                        <div id="comment_menu"><a (click)="reply=i">Reply</a></div>
+                        <div *ngIf="reply===i">	
+                            <comment-form [object_type]="object_type" [id]="id" [parent]="comment.id"></comment-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</li>
+	</ul>
 	</div>
 	</section>
 </div>

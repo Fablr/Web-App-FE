@@ -6,13 +6,15 @@ import { RouterLink, RouteParams, ROUTER_DIRECTIVES } from 'angular2/router';
 import {Http, Headers} from 'angular2/http';
 import {FablerService} from '../../services/fabler_service';
 //import {Observable} from 'rx';
+import {CommentSortPipe} from '../app/comment_pipe';
 
 @Component({
   selector: 'podcast',
   templateUrl: './components/podcast/podcast.html',
   styleUrls: ['./components/podcast/podcast.css'],
   encapsulation: ViewEncapsulation.None,
-  directives: [CORE_DIRECTIVES, RouterLink, ROUTER_DIRECTIVES, CommentFormCmp]
+  directives: [CORE_DIRECTIVES, RouterLink, ROUTER_DIRECTIVES, CommentFormCmp],
+  pipes: [CommentSortPipe]
 })
 export class PodcastCmp {
 	comments: Array<Object>;
